@@ -1,0 +1,913 @@
+<<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motowrapdesign</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(239,68,68,0.15), transparent 25%),
+    radial-gradient(circle at 85% 25%, rgba(59,130,246,0.12), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.04), transparent 30%);
+
+  z-index: 0;
+}
+
+.site::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(120deg, transparent 0%, transparent 45%, rgba(239,68,68,0.08) 50%, transparent 55%, transparent 100%),
+    linear-gradient(160deg, transparent 0%, transparent 60%, rgba(59,130,246,0.06) 65%, transparent 70%);
+
+  z-index: 0;
+}
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px rgba(255,255,255,0.3);
+    }
+
+    .logo-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      mix-blend-mode: screen;
+    }
+
+    .logo-bg img {
+      width: 520px;
+      max-width: 70vw;
+      margin-top: 80px;
+      object-fit: contain;
+    }
+
+    .container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-overlay {
+      display: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      padding: 80px 0 110px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #d4d4d8;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin-top: 24px;
+      font-size: 72px;
+      line-height: 0.95;
+      font-weight: 700;
+      max-width: 780px;
+    }
+
+    .accent {
+      color: #ef4444;
+    }
+
+    .hero p.lead {
+      margin-top: 24px;
+      max-width: 760px;
+      font-size: 21px;
+      line-height: 1.7;
+      color: #d4d4d8;
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #ef4444;
+      color: #fff;
+      box-shadow: 0 0 22px rgba(239,68,68,0.16);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .highlights {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .highlight {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      padding: 14px 16px;
+      border-radius: 18px;
+      font-size: 14px;
+      color: #d4d4d8;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-visual-wrap {
+      position: relative;
+    }
+
+    .hero-visual-glow {
+      position: absolute;
+      inset: -18px;
+      border-radius: 40px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 60%);
+      filter: blur(28px);
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(9,9,11,0.82);
+      padding: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-visual::before {
+      display: none;
+      content: none;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+    }
+
+    .section-pad {
+      padding: 80px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #71717a;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #d4d4d8;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 260px;
+      gap: 16px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(9,9,11,0.95);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      filter: none !important;
+    }
+
+    .portfolio-card.hero {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .portfolio-card::before,
+.portfolio-card::after {
+  display: none !important;
+  content: none !important;
+  background: lime !important;
+}
+
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .portfolio-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.35), transparent);
+    }
+
+    .portfolio-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: #f87171;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .info-card,
+    .services-card,
+    .mood-card,
+    .social-card,
+    .step-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(9,9,11,0.9);
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+    }
+
+    .info-card .subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(239,68,68,0.82);
+      margin-bottom: 16px;
+    }
+
+    .info-card h3 {
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .info-card p,
+    .services-card p,
+    .mood-card p,
+    .social-card p {
+      color: #d4d4d8;
+      line-height: 1.8;
+    }
+
+    .alt-section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .services-card h3,
+    .mood-card h3,
+    .social-card h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .method-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(24,24,27,0.7);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      color: #e4e4e7;
+      padding-top: 8px;
+      line-height: 1.6;
+    }
+
+    .social-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .social-card {
+      background: rgba(255,255,255,0.05);
+      transition: 0.2s ease;
+    }
+
+    .social-card:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .social-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #71717a;
+      margin-bottom: 10px;
+    }
+
+    .social-value {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    form {
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field {
+      margin-top: 20px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #a1a1aa;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.4);
+      padding: 14px 16px;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .field textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(239,68,68,0.4);
+    }
+
+    .submit-btn {
+      margin-top: 24px;
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      background: #ef4444;
+      color: white;
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(239,68,68,0.22);
+      transition: 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-inner,
+      .method-grid,
+      .contact-grid,
+      .cards-4,
+      .cards-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .portfolio-card.hero {
+        grid-column: span 2;
+      }
+
+      h1 {
+        font-size: 56px;
+      }
+
+      h2 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner,
+      .method-grid,
+      .contact-grid,
+      .cards-4,
+      .cards-3,
+      .highlights,
+      .form-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-card.hero {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .hero-visual img {
+        height: 380px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      .hero p.lead,
+      .section-text {
+        font-size: 16px;
+      }
+
+      .section-pad {
+        padding: 64px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <div class="stars" id="stars"></div>
+
+    <div class="logo-bg">
+      <img src="logo.png" alt="Motowrapdesign logo background" />
+    </div>
+
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-inner">
+        <div>
+          <div class="badge">Moto Wrap Design • street aesthetic • custom graphics</div>
+
+          <h1>
+            NON È SOLO WRAP.<br />
+            <span class="accent">È PRESENZA SU STRADA.</span>
+          </h1>
+
+          <p class="lead">
+            Moto Wrap Design trasforma scooter, motard, enduro e sportive in progetti visivi che si fanno guardare. Ogni grafica nasce per dare carattere, impatto e identità reale al mezzo.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contatti" class="btn btn-primary">Richiedi informazioni</a>
+            <a href="#portfolio" class="btn btn-secondary">Guarda i lavori</a>
+          </div>
+
+          <div class="highlights" id="highlights"></div>
+        </div>
+
+        <div class="hero-visual-wrap">
+          <div class="hero-visual-glow"></div>
+          <div class="hero-visual">
+            <img src="hero.png" alt="Preview Motowrapdesign" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section-pad">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Portfolio</div>
+          <h2>Progetti reali</h2>
+          <p class="section-text">
+            Una selezione di lavori Motowrapdesign. Ogni mezzo è pensato per avere presenza vera su strada, con uno stile forte, pulito e riconoscibile.
+          </p>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+      </div>
+    </section>
+
+    <section id="categorie" class="section-pad">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Categorie</div>
+          <h2>Design su misura per ogni tipo di mezzo</h2>
+          <p class="section-text">
+            Ogni categoria richiede un linguaggio visivo diverso. Per questo ogni progetto viene costruito per valorizzare davvero le forme, il mood e la presenza del mezzo.
+          </p>
+        </div>
+
+        <div class="cards-4" id="categoriesGrid"></div>
+      </div>
+    </section>
+
+    <section id="servizi" class="section-pad alt-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Servizi</div>
+          <h2>Da idea a identità visiva</h2>
+          <p class="section-text">
+            Il sito presenta il brand in modo dinamico e pulito, con atmosfera scura e struttura premium.
+          </p>
+        </div>
+
+        <div class="cards-3" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container method-grid">
+        <div>
+          <div class="section-kicker">Metodo</div>
+          <h2>Un processo pulito, un risultato cattivo</h2>
+          <p class="section-text">
+            Dietro un design forte deve esserci un processo chiaro. Il sito lo racconta in modo semplice, così chi arriva capisce subito valore, ordine e qualità del progetto.
+          </p>
+        </div>
+
+        <div class="steps" id="stepsList"></div>
+      </div>
+    </section>
+
+    <section class="section-pad alt-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Mood del brand</div>
+          <h2>Non è uno scooter. È carattere.</h2>
+          <p class="section-text">
+            Il tono del sito riprende la voce del brand: frasi dirette, visuale street, atmosfera scura e un messaggio chiaro.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <div class="mood-card">
+            <h3>Street energy</h3>
+            <p>Look forti, dettagli aggressivi, visual costruiti per colpire subito e restare impressi.</p>
+          </div>
+          <div class="mood-card">
+            <h3>Visual identity</h3>
+            <p>Ogni progetto viene presentato come una firma, non come una semplice decorazione applicata al mezzo.</p>
+          </div>
+          <div class="mood-card">
+            <h3>Direct contact</h3>
+            <p>Instagram, TikTok e form centrale: il sito è pensato per convertire attenzione in richieste vere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti" class="section-pad">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-kicker">Contatti</div>
+          <h2>Raccontaci il tuo progetto</h2>
+          <p class="section-text">
+            Hai uno scooter, un motard, un’enduro o una sportiva e vuoi un look che si faccia guardare? Scrivici dal form oppure contattaci direttamente sui social.
+          </p>
+
+          <div class="social-list">
+            <a class="social-card" href="https://instagram.com/moto_wrap_design" target="_blank">
+              <div class="social-label">Instagram</div>
+              <div class="social-value">@moto_wrap_design</div>
+            </a>
+
+            <a class="social-card" href="https://tiktok.com/@motowrapdesign3" target="_blank">
+              <div class="social-label">TikTok</div>
+              <div class="social-value">@motowrapdesign3</div>
+            </a>
+
+            <a class="social-card" href="mailto:motowrapdesign3@gmail.com">
+              <div class="social-label">Email</div>
+              <div class="social-value">motowrapdesign3@gmail.com</div>
+            </a>
+          </div>
+        </div>
+
+        <form>
+          <div class="form-grid">
+            <div class="field">
+              <label>Nome</label>
+              <input type="text" placeholder="Il tuo nome" />
+            </div>
+
+            <div class="field">
+              <label>Email</label>
+              <input type="email" placeholder="La tua email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Categoria</label>
+            <select>
+              <option>Scooter</option>
+              <option>Motard</option>
+              <option>Enduro</option>
+              <option>Sportive</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Messaggio</label>
+            <textarea placeholder="Che mezzo hai? Che stile vuoi? Raccontaci l’idea e costruiamo qualcosa che si faccia notare davvero."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Invia richiesta</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const categories = [
+      {
+        title: "Scooter",
+        subtitle: "Street presence",
+        text: "Grafiche studiate per trasformare scooter comuni in mezzi che si fanno notare subito: look pulito, cattivo e riconoscibile."
+      },
+      {
+        title: "Motard",
+        subtitle: "Aggressive lines",
+        text: "Design dinamici e taglienti per chi vuole una presenza forte, con livree che esaltano linee, energia e carattere del mezzo."
+      },
+      {
+        title: "Enduro",
+        subtitle: "Off-road identity",
+        text: "Progetti visivi robusti e decisi, pensati per mantenere un’estetica distintiva anche su moto nate per uscire dall’asfalto."
+      },
+      {
+        title: "Sportive",
+        subtitle: "Racing aesthetic",
+        text: "Composizioni premium ispirate al mondo racing: veloci da leggere, forti da ricordare, perfette per chi vuole un look da vera protagonista."
+      }
+    ];
+
+    const services = [
+      {
+        title: "Wrap design personalizzato",
+        text: "Creiamo grafiche su misura partendo dal tuo mezzo e dalla tua idea, per costruire un’identità visiva che non sembri stock e non passi inosservata."
+      },
+      {
+        title: "Mockup e direzione creativa",
+        text: "Ti mostriamo il concept prima della realizzazione finale, così puoi visualizzare il risultato e rifinire ogni dettaglio con precisione."
+      },
+      {
+        title: "Brand image per il mezzo",
+        text: "Non solo adesivi: costruiamo un look coerente, riconoscibile e credibile, pensato per dare al tuo mezzo una presenza vera."
+      }
+    ];
+
+    const steps = [
+      "Ci racconti il mezzo, il modello e il tipo di stile che vuoi ottenere",
+      "Studiamo il concept e impostiamo una direzione visiva forte e coerente",
+      "Rifiniamo palette, dettagli e composizione fino al risultato finale",
+      "Ti consegniamo un progetto pronto per distinguersi davvero"
+    ];
+
+    const highlights = [
+      "Look street e racing",
+      "Identità visiva su misura",
+      "Design d’impatto",
+      "Contatto diretto via social o email"
+    ];
+
+    const portfolioImages = [
+      { src: "p1.png", title: "Scooter build", tag: "Street", size: "hero" },
+      { src: "p2.png", title: "Custom design", tag: "Wrap", size: "normal" },
+      { src: "p3.png", title: "Aggressive look", tag: "Sport", size: "normal" },
+      { src: "p4.png", title: "Dark build", tag: "Custom", size: "normal" },
+      { src: "p5.png", title: "Clean style", tag: "Design", size: "normal" },
+      { src: "p6.png", title: "Detail wrap", tag: "Detail", size: "small" },
+      { src: "p7.png", title: "Graphic detail", tag: "Detail", size: "small" },
+      { src: "p8.png", title: "Premium build", tag: "Luxury", size: "normal" },
+      { src: "p9.png", title: "Street look", tag: "Urban", size: "normal" },
+      { src: "p10.png", title: "Final build", tag: "Custom", size: "normal" }
+    ];
+
+    const starsEl = document.getElementById("stars");
+    const highlightsEl = document.getElementById("highlights");
+    const portfolioGridEl = document.getElementById("portfolioGrid");
+    const categoriesGridEl = document.getElementById("categoriesGrid");
+    const servicesGridEl = document.getElementById("servicesGrid");
+    const stepsListEl = document.getElementById("stepsList");
+
+    for (let i = 0; i < 22; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = ((i * 17) % 100) + "%";
+      star.style.top = ((i * 29) % 100) + "%";
+      star.style.width = (i % 3 === 0 ? 3 : 2) + "px";
+      star.style.height = (i % 3 === 0 ? 3 : 2) + "px";
+      star.style.opacity = i % 2 === 0 ? "0.5" : "0.25";
+      starsEl.appendChild(star);
+    }
+
+    highlights.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "highlight";
+      div.textContent = item;
+      highlightsEl.appendChild(div);
+    });
+
+    portfolioImages.forEach((image) => {
+      const article = document.createElement("article");
+      article.className = "portfolio-card" + (image.size === "hero" ? " hero" : "");
+
+      article.innerHTML = `
+        <img src="${image.src}" alt="${image.title}">
+        <div class="portfolio-info">
+          <div class="portfolio-tag">${image.tag}</div>
+          <div class="portfolio-title">${image.title}</div>
+        </div>
+      `;
+
+      portfolioGridEl.appendChild(article);
+    });
+
+    categories.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "info-card";
+      card.innerHTML = `
+        <div class="subtitle">${item.subtitle}</div>
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      `;
+      categoriesGridEl.appendChild(card);
+    });
+
+    services.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "services-card";
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      `;
+      servicesGridEl.appendChild(card);
+    });
+
+    steps.forEach((item, index) => {
+      const card = document.createElement("div");
+      card.className = "step-card";
+      card.innerHTML = `
+        <div class="step-number">${index + 1}</div>
+        <div class="step-text">${item}</div>
+      `;
+      stepsListEl.appendChild(card);
+    });
+  </script>
+</body>
+</html>
