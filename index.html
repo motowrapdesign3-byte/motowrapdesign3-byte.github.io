@@ -738,36 +738,46 @@
           </div>
         </div>
 
-        <form>
-          <div class="form-grid">
-            <div class="field">
-              <label>Nome</label>
-              <input type="text" placeholder="Il tuo nome" />
-            </div>
+        <form action="https://formspree.io/f/mqeywywq" method="POST">
+          <input type="hidden" name="_next" value="https://motowrapdesign3-byte.github.io/success.html">
 
-            <div class="field">
-              <label>Email</label>
-              <input type="email" placeholder="La tua email" />
-            </div>
-          </div>
+  <div class="form-grid">
+    <div class="field">
+      <label>Nome</label>
+      <input type="text" name="nome" placeholder="Il tuo nome" required />
+    </div>
 
-          <div class="field">
-            <label>Categoria</label>
-            <select>
-              <option>Scooter</option>
-              <option>Motard</option>
-              <option>Enduro</option>
-              <option>Sportive</option>
-            </select>
-          </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="La tua email" required />
+    </div>
+  </div>
 
-          <div class="field">
-            <label>Messaggio</label>
-            <textarea placeholder="Che mezzo hai? Che stile vuoi? Raccontaci l’idea e costruiamo qualcosa che si faccia notare davvero."></textarea>
-          </div>
+  <div class="field">
+    <label>Categoria</label>
+    <select name="categoria">
+      <option>Scooter</option>
+      <option>Motard</option>
+      <option>Enduro</option>
+      <option>Sportive</option>
+    </select>
+  </div>
 
-          <button type="submit" class="submit-btn">Invia richiesta</button>
-        </form>
+  <div class="field">
+    <label>Messaggio</label>
+    <textarea 
+      name="messaggio"
+      placeholder="Che mezzo hai? Che stile vuoi?"
+      required
+    ></textarea>
+  </div>
+
+  <!-- email nascosta per risposta -->
+  <input type="hidden" name="_subject" value="Nuova richiesta sito Motowrapdesign">
+
+  <button type="submit" class="submit-btn">Invia richiesta</button>
+
+</form>
       </div>
     </section>
   </div>
